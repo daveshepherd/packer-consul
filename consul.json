@@ -1,0 +1,44 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "eu-west-1",
+    "subnet_id": "subnet-2491f643",
+    "vpc_id": "vpc-1902cd7e",
+    "associate_public_ip_address": true,
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "ubuntu-*",
+        "root-device-type": "ebs"
+      },
+      "owners": ["238573916854"],
+      "most_recent": true
+    },
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "consul-{{timestamp}}"
+  }],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "file/server.json",
+      "destination": "/tmp/server.json"
+    },
+    {
+      "type": "file",
+      "source": "file/systemd.service",
+      "destination": "/tmp/systemd.service"
+    },
+    {
+      "type": "shell",
+      "script": "shell/consul.sh"
+    }
+  ]
+}
+

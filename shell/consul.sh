@@ -24,3 +24,5 @@ sudo mv /tmp/server.json /etc/consul.d/server/server.json
 sudo mv /tmp/systemd.service /etc/systemd/system/consul.service
 
 sudo chown root:root /etc/systemd/system/consul.service
+
+sudo systemctl enable consul

@@ -8,5 +8,4 @@ PACKER=$(which packer)
 
 source ${DIR}/../environments/config.env
 
-echo "building ireland ami"
-${PACKER} build -var "region=${IRELAND_REGION}" -var "vpc_id=${IRELAND_VPC}" -var "subnet_id=${IRELAND_SUBNET}" -var "consul_version=1.0.6" consul.json
+${PACKER} build -var "london_vpc_id=${LONDON_VPC}" -var "london_subnet_id=${LONDON_SUBNET}" -var "ireland_vpc_id=${IRELAND_VPC}" -var "ireland_subnet_id=${IRELAND_SUBNET}" -var "consul_version=1.0.6" consul.json

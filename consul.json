@@ -1,29 +1,57 @@
 {
   "variables": {
-    "region": "",
-    "vpc_id": "",
-    "subnet_id": "",
+    "ireland_vpc_id": "",
+    "ireland_subnet_id": "",
+    "london_vpc_id": "",
+    "london_subnet_id": "",
     "consul_version": ""
   },
-  "builders": [{
-    "type": "amazon-ebs",
-    "region": "{{user `region`}}",
-    "vpc_id": "{{user `vpc_id`}}",
-    "subnet_id": "{{user `subnet_id`}}",
-    "associate_public_ip_address": true,
-    "source_ami_filter": {
-      "filters": {
-        "virtualization-type": "hvm",
-        "name": "ubuntu-*",
-        "root-device-type": "ebs"
+  "builders": [
+    {
+      "name": "aws-ireland",
+      "type": "amazon-ebs",
+      "region": "eu-west-1",
+      "vpc_id": "{{user `ireland_vpc_id`}}",
+      "subnet_id": "{{user `ireland_subnet_id`}}",
+      "associate_public_ip_address": true,
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu-*",
+          "root-device-type": "ebs"
+        },
+        "owners": [
+          "238573916854"
+        ],
+        "most_recent": true
       },
-      "owners": ["238573916854"],
-      "most_recent": true
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "consul-{{user `consul_version`}}-{{timestamp}}"
     },
-    "instance_type": "t2.micro",
-    "ssh_username": "ubuntu",
-    "ami_name": "consul-{{user `consul_version`}}-{{timestamp}}"
-  }],
+    {
+      "name": "aws-london",
+      "type": "amazon-ebs",
+      "region": "eu-west-2",
+      "vpc_id": "{{user `london_vpc_id`}}",
+      "subnet_id": "{{user `london_subnet_id`}}",
+      "associate_public_ip_address": true,
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu-*",
+          "root-device-type": "ebs"
+        },
+        "owners": [
+          "238573916854"
+        ],
+        "most_recent": true
+      },
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "consul-{{user `consul_version`}}-{{timestamp}}"
+    }
+  ],
   "provisioners": [
     {
       "type": "file",

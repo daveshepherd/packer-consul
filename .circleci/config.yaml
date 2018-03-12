@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  validate:
+    docker:
+      - image: hashicorp/packer:1.1.3
+    working_directory: ~/packer
+    steps:
+      - checkout
+      - run:
+          name: Validate base
+          command: packer validate ./consul.json
+  build-base:
+    docker:
+      - image: hashicorp/packer:1.1.3
+    working_directory: ~/packer
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/packer
+      - run:
+          name: Build consul
+          command: ./build.sh
+          no_output_timeout: 30m
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - validate
+      - build-base:
+          requires:
+            - validate

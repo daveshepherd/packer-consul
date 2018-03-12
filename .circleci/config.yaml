@@ -7,9 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Validate base
+          name: Validate definition
           command: packer validate ./consul.json
-  build-base:
+  build:
     docker:
       - image: hashicorp/packer:1.1.3
     working_directory: ~/packer
@@ -26,6 +26,4 @@ workflows:
   build-and-deploy:
     jobs:
       - validate
-      - build-base:
-          requires:
-            - validate
+      - build

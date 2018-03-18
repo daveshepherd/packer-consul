@@ -25,6 +25,8 @@
         ],
         "most_recent": true
       },
+      "spot_price": "auto",
+      "spot_price_auto_product": "Linux/UNIX (Amazon VPC)",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
       "ami_name": "consul-{{user `consul_version`}}-{{timestamp}}"
@@ -47,6 +49,8 @@
         ],
         "most_recent": true
       },
+      "spot_price": "auto",
+      "spot_price_auto_product": "Linux/UNIX (Amazon VPC)",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
       "ami_name": "consul-{{user `consul_version`}}-{{timestamp}}"

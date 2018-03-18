@@ -1,5 +1,7 @@
 # Packer - Consul
 
+![circleci build status](https://circleci.com/gh/daveshepherd/packer-consul.png?style=shield "circleci build status")
+
 Builds AWS AMI images for [consul](https://www.consul.io/) using [Packer](https://www.packer.io/) based on the official
 Ubuntu AMI image in the eu-west-1 and eu-west-2 regions.
 

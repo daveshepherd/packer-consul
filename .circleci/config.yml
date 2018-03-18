@@ -27,6 +27,8 @@ workflows:
     jobs:
       - validate
       - build:
+          requires:
+            - validate
           filters:
             branches:
               only:
@@ -42,3 +44,5 @@ workflows:
     jobs:
       - validate
       - build:
+          requires:
+            - validate

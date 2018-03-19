@@ -33,7 +33,7 @@ workflows:
             branches:
               only:
                 - master
-  weekly:
+  monthly:
     triggers:
       - schedule:
           cron: "13 2 19 * *"

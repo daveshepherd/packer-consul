@@ -5,4 +5,4 @@ PACKER=$(which packer)
 
 CONSUL_VERSION=1.0.6
 
-${PACKER} build -var "london_vpc_id=${LONDON_VPC}" -var "london_subnet_id=${LONDON_SUBNET}" -var "ireland_vpc_id=${IRELAND_VPC}" -var "ireland_subnet_id=${IRELAND_SUBNET}" -var "consul_version=${CONSUL_VERSION}" consul.json
+${PACKER} build -var "region=${REGION}" -var "vpc_id=${VPC_ID}" -var "subnet_id=${SUBNET_ID}" -var "consul_version=${CONSUL_VERSION}" -var "destination_regions=${DESTINATION_REGIONS}" build.json

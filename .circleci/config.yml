@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Validate definition
-          command: packer validate ./consul.json
+          command: packer validate ./build.json
   build:
     docker:
       - image: hashicorp/packer:1.2.1
@@ -18,7 +18,7 @@ jobs:
       - attach_workspace:
           at: ~/packer
       - run:
-          name: Build consul
+          name: Build AMI
           command: ./build.sh
           no_output_timeout: 30m
 workflows:
